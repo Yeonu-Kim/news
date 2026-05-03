@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Noto+Serif+KR:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #14212B;
+  --color-ink-alt: #14202B;
+  --color-sub: #5F6E76;
+  --color-mute: #879298;
+  --color-line: #D2DAE0;
+  --color-soft: #F5F7F9;
+  --color-soft-alt: #F7F7FC;
+  --color-card: #FFFFFF;
+  --color-page: #FEFEFE;
+  --color-accent: #7890E7;
+  --color-accent-deep: #4362D0;
+  --color-badge-ink: rgba(255, 255, 255, 0.7);
+  --color-danger: #FFD1CF;
+}
+
+:root {
+  --ink: #14212B;
+  --ink-alt: #14202B;
+  --sub: #5F6E76;
+  --mute: #879298;
+  --line: #D2DAE0;
+  --soft: #F5F7F9;
+  --soft-alt: #F7F7FC;
+  --card: #FFFFFF;
+  --page: #FEFEFE;
+  --accent: #7890E7;
+  --accent-deep: #4362D0;
+  --badge-ink: rgba(255, 255, 255, 0.7);
+  --danger: #FFD1CF;
+
+  font-family: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+@keyframes cell-pill-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
