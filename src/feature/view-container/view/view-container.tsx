@@ -14,11 +14,11 @@ const STEPS = 6000 / TICK_MS
 
 export const ViewContainer = () => {
       const { buildCatMap } = ListViewPresenterImpl();
-      const [tab, setTab] = useState<'all' | 'sub'>('all')
+      const [tab, setTab] = useState<'ALL' | 'SUB'>('ALL')
   const [page, setPage] = useState(0)
 
   // ── List view state ──────────────────────────────────────────
-  const [viewer, setViewer] = useState<'grid' | 'list'>('grid')
+  const [viewer, setViewer] = useState<'GRID' | 'LIST'>('GRID')
   const [tabKey, setTabKey] = useState<CategoryKey>('종합/경제')
   const [currentInTab, setCurrentInTab] = useState(0) // 0-indexed press within category
 
@@ -32,8 +32,8 @@ export const ViewContainer = () => {
   tabKeyRef.current = tabKey
 
   // ── Dynamic category map (respects tab + subscribed) ─────────
-  // In 'sub' tab, list view only shows subscribed presses per category
-  const listSource = tab === 'sub' ? presses.filter((p) => subscribed.has(p.id)) : presses
+  // In 'SUB' tab, list view only shows subscribed presses per category
+  const listSource = tab === 'SUB' ? presses.filter((p) => subscribed.has(p.id)) : presses
   const activeCatMap = buildCatMap(listSource)
   const activeCatMapRef = useRef(activeCatMap)
   activeCatMapRef.current = activeCatMap // sync every render for interval
@@ -47,7 +47,7 @@ export const ViewContainer = () => {
 
 
   // Grid items
-  const allItems = tab === 'all' ? presses : presses.filter((p) => subscribed.has(p.id))
+  const allItems = tab === 'ALL' ? presses : presses.filter((p) => subscribed.has(p.id))
   const totalPages = Math.max(1, Math.ceil(allItems.length / PRESSES_PER_PAGE))
   const safePage = Math.min(page, totalPages - 1)
   const pageItems = allItems.slice(safePage * PRESSES_PER_PAGE, (safePage + 1) * PRESSES_PER_PAGE)
@@ -56,17 +56,17 @@ export const ViewContainer = () => {
         const activePress = pressesInTab[safeIdx] ?? null
 
           const gridItems =
-    tab === 'sub'
+    tab === 'SUB'
       ? [...pageItems, ...Array<null>(Math.max(0, PRESSES_PER_PAGE - pageItems.length)).fill(null)]
       : pageItems
 
 
         // ── Handlers ──────────────────────────────────────────────────
-        const handleTabChange = (newTab: 'all' | 'sub') => {
+        const handleTabChange = (newTab: 'ALL' | 'SUB') => {
           setTab(newTab)
           setPage(0)
           // When switching tabs while in list view, reset to first press of current category
-          if (viewer === 'list') {
+          if (viewer === 'LIST') {
             setCurrentInTab(0)
             progressRef.current = 0
             setProgress(0)
@@ -75,7 +75,7 @@ export const ViewContainer = () => {
       
       
       
-        const handleViewerChange = (newViewer: 'grid' | 'list') => {
+        const handleViewerChange = (newViewer: 'GRID' | 'LIST') => {
           setViewer(newViewer)
         }
       
@@ -95,7 +95,7 @@ export const ViewContainer = () => {
       const cat = press.mainCategory
       // Use activeCatMap so index is correct for the current tab context
       const idx = activeCatMap[cat].findIndex((p) => p.id === pressId)
-      setViewer('list')
+      setViewer('LIST')
       setTabKey(cat)
       tabKeyRef.current = cat
       setCurrentInTab(Math.max(0, idx)) // idx is -1 if press not in sub list → go to 0
@@ -116,7 +116,7 @@ export const ViewContainer = () => {
           progressRef.current = 0
           setProgress(0)
       
-          if (viewer !== 'list') return
+          if (viewer !== 'LIST') return
       
           const id = setInterval(() => {
             progressRef.current += 1 / STEPS
@@ -143,14 +143,14 @@ export const ViewContainer = () => {
         }, [viewer])
 
           // ── Chevron logic (context-aware) ─────────────────────────────
-          const leftDisabled = viewer === 'grid' ? safePage === 0 : safeIdx === 0
+          const leftDisabled = viewer === 'GRID' ? safePage === 0 : safeIdx === 0
           const rightDisabled =
-            viewer === 'grid'
+            viewer === 'GRID'
               ? safePage >= totalPages - 1
               : pressesInTab.length === 0 || safeIdx >= pressesInTab.length - 1
         
           const handlePrev = () => {
-            if (viewer === 'grid') {
+            if (viewer === 'GRID') {
               setPage((p) => Math.max(0, p - 1))
             } else {
               setCurrentInTab((i) => Math.max(0, i - 1))
@@ -160,7 +160,7 @@ export const ViewContainer = () => {
           }
         
           const handleNext = () => {
-            if (viewer === 'grid') {
+            if (viewer === 'GRID') {
               setPage((p) => Math.min(totalPages - 1, p + 1))
             } else {
               setCurrentInTab((i) => Math.min(pressesInTab.length - 1, i + 1))
@@ -188,7 +188,7 @@ export const ViewContainer = () => {
             <Chevron dir="right" disabled={rightDisabled} onClick={handleNext} />
           </div>
 
-          {viewer === 'list' ? (
+          {viewer === 'LIST' ? (
             <div className="flex flex-col h-[388px]">
               <FieldTab
                 activeCategory={tabKey}
