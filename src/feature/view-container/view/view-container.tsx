@@ -1,4 +1,4 @@
-import Chevron from "../../../components/Chevron"
+import { Chevron } from "./chevron"
 import {TabBar} from "./tab-bar"
 import PressGrid from "../../../components/PressGrid"
 import PressOpen from "../../../components/PressOpen"
@@ -182,10 +182,10 @@ export const ViewContainer = () => {
         </div>
     <div className="mt-6 relative">
           <div className="absolute top-1/2 left-[-72px] -translate-y-1/2">
-            <Chevron dir="left" disabled={leftDisabled} onClick={handlePrev} />
+            <Chevron dir="LEFT" disabled={leftDisabled} onClick={handlePrev} />
           </div>
           <div className="absolute top-1/2 right-[-72px] -translate-y-1/2">
-            <Chevron dir="right" disabled={rightDisabled} onClick={handleNext} />
+            <Chevron dir="RIGHT" disabled={rightDisabled} onClick={handleNext} />
           </div>
 
           {viewer === 'LIST' ? (
