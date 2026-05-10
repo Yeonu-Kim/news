@@ -1,5 +1,5 @@
 import GridCell from './GridCell'
-import type { Press } from '../data/presses'
+import type { Press } from '../../../data/presses'
 
 interface PressGridProps {
   items: (Press | null)[]

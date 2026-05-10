@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import PressWordmark from './PressWordmark'
-import SubscribePill from './SubscribePill'
-import type { Press } from '../data/presses'
+import PressWordmark from '../../../components/PressWordmark'
+import SubscribePill from '../../../components/SubscribePill'
+import type { Press } from '../../../data/presses'
 
 interface GridCellProps {
   press: Press

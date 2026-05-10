@@ -1,4 +1,4 @@
-import type { CategoryKey } from '../data/presses'
+import type { CategoryKey } from '../../../data/presses'
 
 export const CATEGORIES: CategoryKey[] = [
   '종합/경제',

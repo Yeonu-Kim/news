@@ -1,7 +1,7 @@
-import type { Press, CategoryKey } from '../data/presses'
-import { getContent } from '../data/articles'
-import PressWordmark from './PressWordmark'
-import SubscribePill from './SubscribePill'
+import type { Press, CategoryKey } from '../../../data/presses'
+import { getContent } from '../../../data/articles'
+import PressWordmark from '../../../components/PressWordmark'
+import SubscribePill from '../../../components/SubscribePill'
 
 interface PressOpenProps {
   press: Press

@@ -1,9 +1,9 @@
 import { Chevron } from "./chevron"
 import {TabBar} from "./tab-bar"
-import PressGrid from "../../../components/PressGrid"
-import PressOpen from "../../../components/PressOpen"
+import PressGrid from "../../gridview/view/PressGrid"
+import { ListViewContainer } from "../../listview/view/list-view"
 
-import FieldTab, { CATEGORIES } from '../../../components/FieldTab'
+import { CATEGORIES } from '../../listview/view/FieldTab'
 import { presses, PRESSES_PER_PAGE } from '../../../data/presses'
 import type { CategoryKey } from '../../../data/presses'
 import { useEffect, useRef, useState } from 'react'
@@ -13,8 +13,8 @@ const TICK_MS = 100
 const STEPS = 6000 / TICK_MS
 
 export const ViewContainer = () => {
-      const { buildCatMap } = ListViewPresenterImpl();
-      const [tab, setTab] = useState<'ALL' | 'SUB'>('ALL')
+  const { buildCatMap } = ListViewPresenterImpl();
+  const [tab, setTab] = useState<'ALL' | 'SUB'>('ALL')
   const [page, setPage] = useState(0)
 
   // ── List view state ──────────────────────────────────────────
@@ -38,8 +38,6 @@ export const ViewContainer = () => {
   const activeCatMapRef = useRef(activeCatMap)
   activeCatMapRef.current = activeCatMap // sync every render for interval
 
-  // ── Auto-advance timer (list view only) ──────────────────────
-
 
   // ── Derived values ────────────────────────────────────────────
   const pressesInTab = activeCatMap[tabKey]
@@ -55,7 +53,7 @@ export const ViewContainer = () => {
 
         const activePress = pressesInTab[safeIdx] ?? null
 
-          const gridItems =
+  const gridItems =
     tab === 'SUB'
       ? [...pageItems, ...Array<null>(Math.max(0, PRESSES_PER_PAGE - pageItems.length)).fill(null)]
       : pageItems
@@ -189,28 +187,17 @@ export const ViewContainer = () => {
           </div>
 
           {viewer === 'LIST' ? (
-            <div className="flex flex-col h-[388px]">
-              <FieldTab
-                activeCategory={tabKey}
-                progress={progress}
-                currentInTab={safeIdx}
-                tabOutletCount={pressesInTab.length}
-                onCategoryChange={handleCategoryChange}
-              />
-              {activePress ? (
-                <PressOpen
-                  press={activePress}
-                  activeCategory={tabKey}
-                  isSubscribed={subscribed.has(activePress.id)}
-                  onSubscribe={handleSubscribe}
-                  onUnsubscribe={handleUnsubscribe}
-                />
-              ) : (
-                <div className="flex-1 bg-card border border-line border-t-0 flex items-center justify-center text-sm text-mute tracking-[-0.01em]">
-                  이 카테고리에 구독한 언론사가 없습니다.
-                </div>
-              )}
-            </div>
+            <ListViewContainer
+              activePress={activePress}
+              tabKey={tabKey}
+              progress={progress}
+              safeIdx={safeIdx}
+              pressesInTab={pressesInTab}
+              handleCategoryChange={handleCategoryChange}
+              subscribed={subscribed}
+              handleSubscribe={handleSubscribe}
+              handleUnsubscribe={handleUnsubscribe}
+            />
           ) : (
             <PressGrid
               items={gridItems}
