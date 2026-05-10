@@ -1,5 +1,5 @@
 import Chevron from "../../../components/Chevron"
-import {TabBar} from "./TabBar"
+import {TabBar} from "./tab-bar"
 import PressGrid from "../../../components/PressGrid"
 import PressOpen from "../../../components/PressOpen"
 
@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ListViewPresenterImpl } from "../../listview/presenter/listview-presenter-impl"
 
 const TICK_MS = 100
-const STEPS = 6000 / TICK_MS // 60 ticks = 6s
+const STEPS = 6000 / TICK_MS
 
 export const ViewContainer = () => {
       const { buildCatMap } = ListViewPresenterImpl();

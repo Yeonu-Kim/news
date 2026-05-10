@@ -1,24 +1,19 @@
+import { ASSET_URL } from "../../../data/asset"
+
 const tabBtnBase = 'bg-transparent border-0 cursor-pointer p-0 tracking-[-0.01em] leading-none'
 
 const GridIcon = ({ active }: { active: boolean }) => {
-  const color = active ? '#14212B' : '#879298'
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <rect x="3" y="3" width="8" height="8" stroke={color} strokeWidth="1.3" />
-      <rect x="13" y="3" width="8" height="8" stroke={color} strokeWidth="1.3" />
-      <rect x="3" y="13" width="8" height="8" stroke={color} strokeWidth="1.3" />
-      <rect x="13" y="13" width="8" height="8" stroke={color} strokeWidth="1.3" />
-    </svg>
+  <svg width="24" height="24" style={{ color: active ? 'var(--ink)' : 'var(--mute)' }}>
+    <use href={ASSET_URL.GRID_ICON} />
+  </svg>
   )
 }
 
 const ListIcon = ({ active }: { active: boolean }) => {
-  const color = active ? '#14212B' : '#879298'
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <line x1="3" y1="7" x2="21" y2="7" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
-      <line x1="3" y1="12" x2="21" y2="12" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
-      <line x1="3" y1="17" x2="21" y2="17" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+    <svg width="24" height="24" style={{ color: active ? 'var(--ink)' : 'var(--mute)' }}>
+      <use href={ASSET_URL.LIST_ICON} />
     </svg>
   )
 }
