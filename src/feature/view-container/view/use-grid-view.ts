@@ -1,6 +1,5 @@
 import { presses } from '../../../data/presses'
-
-const PRESSES_PER_PAGE = 24
+import { PRESSES_PER_PAGE } from '../../../data/presses'
 
 export const useGridView = (tab: 'ALL' | 'SUB', page: number, subscribed: Set<number>) => {
   const allItems = tab === 'ALL' ? presses : presses.filter((p) => subscribed.has(p.id))

@@ -1,5 +1,6 @@
 import { GridCell } from './GridCell'
 import type { Press } from '../../../data/presses'
+import { PRESSES_PER_PAGE } from '../../../data/presses'
 
 export const PressGrid = ({ items, subscribedIds, onSubscribe, onUnsubscribe, onOpen }: {
   items: (Press | null)[]
@@ -9,7 +10,7 @@ export const PressGrid = ({ items, subscribedIds, onSubscribe, onUnsubscribe, on
   onOpen: (id: number) => void
 }) => {
   const cells: (Press | null)[] = [...items]
-  while (cells.length < 24) cells.push(null)
+  while (cells.length < PRESSES_PER_PAGE) cells.push(null)
 
   return (
     <div className="w-[931px] h-[388px] grid grid-cols-6 grid-rows-4 gap-px bg-line border border-line">

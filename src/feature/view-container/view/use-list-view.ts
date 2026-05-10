@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { CATEGORIES } from '../../../data/presses'
 import { ListViewPresenterImpl } from '../../listview/presenter/listview-presenter-impl'
 import type { Press, CategoryKey } from '../../../data/presses'
@@ -18,9 +18,7 @@ export const useListView = (listSource: Press[], viewer: 'GRID' | 'LIST') => {
   const tabKeyRef = useRef<CategoryKey>('종합/경제')
   tabKeyRef.current = tabKey
 
-  const activeCatMap = buildCatMap(listSource)
-  const activeCatMapRef = useRef(activeCatMap)
-  activeCatMapRef.current = activeCatMap
+  const activeCatMap = useMemo(() => buildCatMap(listSource), [listSource])
 
   const pressesInTab = activeCatMap[tabKey]
   const safeIdx =
@@ -73,7 +71,7 @@ export const useListView = (listSource: Press[], viewer: 'GRID' | 'LIST') => {
         progressRef.current = 0
         const currCat = tabKeyRef.current
         setCurrentInTab((prev) => {
-          const count = activeCatMapRef.current[currCat].length
+          const count = activeCatMap[currCat].length
           if (count === 0 || prev + 1 >= count) {
             const next = CATEGORIES[(CATEGORIES.indexOf(currCat) + 1) % CATEGORIES.length]
             tabKeyRef.current = next
@@ -87,7 +85,7 @@ export const useListView = (listSource: Press[], viewer: 'GRID' | 'LIST') => {
     }, TICK_MS)
 
     return () => clearInterval(id)
-  }, [viewer])
+  }, [viewer, activeCatMap])
 
   return {
     tabCategoryKey: tabKey,

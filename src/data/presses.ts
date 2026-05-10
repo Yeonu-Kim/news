@@ -129,3 +129,5 @@ export const CATEGORIES: CategoryKey[] = [
 for (const press of presses) {
   pressesByCategory[press.mainCategory].push(press)
 }
+
+export const PRESSES_PER_PAGE = 24

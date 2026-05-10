@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Chevron } from './chevron'
 import { TabBar } from './tab-bar'
 import { PressGrid } from '../../gridview/view/PressGrid'
@@ -16,7 +16,10 @@ export const ViewContainer = () => {
 
   const { totalPages, safePage, gridItems } = useGridView(tab, page, subscribed)
 
-  const listSource = tab === 'SUB' ? presses.filter((p) => subscribed.has(p.id)) : presses
+  const listSource = useMemo(
+    () => tab === 'SUB' ? presses.filter((p) => subscribed.has(p.id)) : presses,
+    [tab, subscribed]
+  )
   const {
     tabCategoryKey,
     progress,
