@@ -10,7 +10,7 @@ export const Chevron = ({ dir, disabled, onClick }: {
       onClick={onClick}
       disabled={disabled}
       aria-label={dir === 'LEFT' ? '이전 페이지' : '다음 페이지'}
-      className="flex w-6 h-10 items-center justify-center border-[1.4px] border-[#879298] rounded-none bg-transparent p-0 shrink-0 cursor-pointer disabled:cursor-default opacity-100 disabled:opacity-0 transition-opacity duration-150"
+      className="flex w-6 h-10 items-center justify-center rounded-none bg-transparent p-0 shrink-0 cursor-pointer disabled:cursor-default opacity-100 disabled:opacity-0 transition-opacity duration-150"
     >
       <svg
         width="8"
