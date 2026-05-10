@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import type { TickerItem } from "../../../domain/ticker-items"
 import { checkPreferReducedMotion } from '../../../utils/check-prefer-reduced-motion'
 
+const ROLLING_ANIMATION_INTERVAL = 350
+
 export const TickerLane = ({ items, currentIndex, paused }: {items: TickerItem[],currentIndex: number, paused: boolean}) => {
   const item = items[currentIndex % items.length]
   const [animating, setAnimating] = useState(false)
@@ -20,7 +22,7 @@ export const TickerLane = ({ items, currentIndex, paused }: {items: TickerItem[]
       setDisplayItem(item)
       setNextItem(null)
       setAnimating(false)
-    }, 350)
+    }, ROLLING_ANIMATION_INTERVAL)
     return () => clearTimeout(t)
   }, [currentIndex])
 
@@ -50,7 +52,7 @@ export const TickerLane = ({ items, currentIndex, paused }: {items: TickerItem[]
           <span
             className="absolute translate-y-[-50%] top-1/2 transition-opacity duration-200"
             style={{
-              animation: 'ticker-slide-in 350ms ease-in-out forwards',
+              animation: `ticker-slide-in ${ROLLING_ANIMATION_INTERVAL}ms ease-in-out forwards`,
             }}
           >
             {nextItem.press}
@@ -78,7 +80,7 @@ export const TickerLane = ({ items, currentIndex, paused }: {items: TickerItem[]
             className="absolute inset-0 flex items-center text-[14px] font-medium text-[var(--ink)] whitespace-nowrap overflow-hidden text-ellipsis"
             style={{
               letterSpacing: '-0.01em',
-              animation: 'ticker-slide-in 350ms ease-in-out forwards',
+              animation: `ticker-slide-in ${ROLLING_ANIMATION_INTERVAL}ms ease-in-out forwards`,
             }}
           >
             {nextItem.headline}
