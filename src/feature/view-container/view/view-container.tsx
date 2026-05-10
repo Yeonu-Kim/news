@@ -7,13 +7,13 @@ import FieldTab, { CATEGORIES } from '../../../components/FieldTab'
 import { presses, PRESSES_PER_PAGE } from '../../../data/presses'
 import type { CategoryKey } from '../../../data/presses'
 import { useEffect, useRef, useState } from 'react'
-import { PageViewPresenterImpl } from "../../pageview/presenter/pageview-presenter-impl"
+import { ListViewPresenterImpl } from "../../listview/presenter/listview-presenter-impl"
 
 const TICK_MS = 100
 const STEPS = 6000 / TICK_MS // 60 ticks = 6s
 
 export const ViewContainer = () => {
-      const { buildCatMap } = PageViewPresenterImpl();
+      const { buildCatMap } = ListViewPresenterImpl();
       const [tab, setTab] = useState<'all' | 'sub'>('all')
   const [page, setPage] = useState(0)
 

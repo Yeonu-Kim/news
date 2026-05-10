@@ -1,8 +1,8 @@
 import type { Press } from "../../../data/presses"
 import type { CategoryKey } from "../../../data/presses"
-import type { PageViewPresenter } from "../../../domain/pageview-presenter"
+import type { ListViewPresenter } from "../../../domain/listview-presenter"
 
-export const PageViewPresenterImpl = (): PageViewPresenter => ({
+export const ListViewPresenterImpl = (): ListViewPresenter => ({
     buildCatMap: (source: Press[]) => {
         const map: Record<CategoryKey, Press[]> = {
             '종합/경제': [], '방송/통신': [], IT: [], '스포츠/연예': [], '매거진/전문지': [], 지역: [],
