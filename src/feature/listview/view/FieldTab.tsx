@@ -17,15 +17,7 @@ export default function FieldTab({
   onCategoryChange,
 }: FieldTabProps) {
   return (
-    <div
-      role="tablist"
-      style={{
-        display: 'flex',
-        height: 40,
-        background: '#F5F7F9',
-        border: '1px solid #D2DAE0',
-      }}
-    >
+    <div role="tablist" className="flex h-10 bg-soft border border-line">
       {CATEGORIES.map((cat, i) => {
         const isActive = cat === activeCategory
         return (
@@ -34,45 +26,23 @@ export default function FieldTab({
             role="tab"
             aria-selected={isActive}
             onClick={() => onCategoryChange(cat)}
-            style={{
-              flex: 1,
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '0 12px',
-              border: 'none',
-              borderRight: i < CATEGORIES.length - 1 ? '1px solid #D2DAE0' : 'none',
-              background: isActive ? '#7890E7' : 'transparent',
-              cursor: 'pointer',
-              overflow: 'hidden',
-            }}
+            className={[
+              'flex-1 relative flex items-center justify-between px-3 cursor-pointer overflow-hidden',
+              i < CATEGORIES.length - 1 ? 'border-r border-line' : '',
+              isActive ? 'bg-accent' : 'bg-transparent',
+            ].join(' ').trim()}
           >
             {/* Progress overlay */}
             {isActive && (
               <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: '#4362D0',
-                  width: `${progress * 100}%`,
-                  zIndex: 0,
-                }}
+                className="absolute inset-0 bg-accent-deep z-0"
+                style={{ width: `${progress * 100}%` }}
               />
             )}
 
             {/* Label */}
             <span
-              style={{
-                position: 'relative',
-                zIndex: 1,
-                fontSize: 14,
-                fontWeight: isActive ? 700 : 500,
-                color: isActive ? '#FFFFFF' : '#5F6E76',
-                letterSpacing: '-0.01em',
-                fontFamily: "'Pretendard Variable', 'Pretendard', sans-serif",
-                whiteSpace: 'nowrap',
-              }}
+              className={`relative z-[1] text-[14px] tracking-[-0.01em] whitespace-nowrap ${isActive ? 'font-bold text-white' : 'font-medium text-sub'}`}
             >
               {cat}
             </span>
@@ -80,19 +50,11 @@ export default function FieldTab({
             {/* Counter: "N / M" — current press / total presses in this category */}
             {isActive && (
               <span
-                style={{
-                  position: 'relative',
-                  zIndex: 1,
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 12,
-                  fontWeight: 500,
-                  color: '#FFFFFF',
-                  whiteSpace: 'nowrap',
-                  flexShrink: 0,
-                }}
+                className="relative z-[1] text-xs font-medium text-white whitespace-nowrap shrink-0"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
               >
-                <span style={{ opacity: 1 }}>{tabOutletCount === 0 ? 0 : currentInTab + 1}</span>
-                <span style={{ opacity: 0.7 }}> / {tabOutletCount}</span>
+                <span>{tabOutletCount === 0 ? 0 : currentInTab + 1}</span>
+                <span className="opacity-70"> / {tabOutletCount}</span>
               </span>
             )}
           </button>

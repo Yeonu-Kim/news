@@ -13,18 +13,7 @@ interface PressOpenProps {
 
 function BulletSquare() {
   return (
-    <span
-      style={{
-        display: 'inline-block',
-        width: 3,
-        height: 3,
-        background: '#14212B',
-        flexShrink: 0,
-        marginRight: 8,
-        transform: 'translateY(-1px)',
-        alignSelf: 'center',
-      }}
-    />
+    <span className="inline-block w-[3px] h-[3px] bg-ink shrink-0 mr-2 -translate-y-px self-center" />
   )
 }
 
@@ -38,36 +27,13 @@ export default function PressOpen({
   const { editedAt, featuredTitle, articles } = getContent(press.id, activeCategory)
 
   return (
-    <div
-      style={{
-        width: 930,
-        flex: 1,
-        background: '#FFFFFF',
-        border: '1px solid #D2DAE0',
-        borderTop: 'none',
-        padding: '20px 32px 24px',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        boxSizing: 'border-box',
-      }}
-    >
+    <div className="w-[930px] flex-1 bg-card border border-line border-t-0 pt-5 px-8 pb-6 flex flex-col overflow-hidden box-border">
       {/* Head row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <div style={{ transform: 'scale(1.05)', transformOrigin: 'left center' }}>
+      <div className="flex items-center gap-4">
+        <div className="scale-[1.05] origin-left">
           <PressWordmark {...press.wordmark} />
         </div>
-        <span
-          style={{
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'var(--sub)',
-            letterSpacing: '-0.01em',
-            fontVariantNumeric: 'tabular-nums',
-            fontFamily: "'Pretendard Variable', 'Pretendard', sans-serif",
-            flexShrink: 0,
-          }}
-        >
+        <span className="text-xs font-medium text-sub tracking-[-0.01em] [font-variant-numeric:tabular-nums] shrink-0">
           {editedAt}
         </span>
         <SubscribePill
@@ -77,86 +43,25 @@ export default function PressOpen({
       </div>
 
       {/* Body */}
-      <div style={{ display: 'flex', gap: 24, marginTop: 16, flex: 1, overflow: 'hidden' }}>
+      <div className="flex gap-6 mt-4 flex-1 overflow-hidden">
         {/* Left column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flexShrink: 0, width: 340 }}>
+        <div className="flex flex-col gap-3 shrink-0 w-[340px]">
           {/* Image placeholder */}
-          <div
-            style={{
-              width: 340,
-              height: 188,
-              background: 'linear-gradient(135deg, #EFF1F6, #DDE3EC)',
-              border: '1px solid #D2DAE0',
-              flexShrink: 0,
-              boxSizing: 'border-box',
-            }}
-          />
+          <div className="w-[340px] h-[188px] bg-[linear-gradient(135deg,#EFF1F6,#DDE3EC)] border border-line shrink-0 box-border" />
           {/* Featured headline */}
-          <p
-            style={{
-              margin: 0,
-              fontSize: 16,
-              fontWeight: 700,
-              color: 'var(--ink)',
-              lineHeight: 1.45,
-              letterSpacing: '-0.01em',
-              fontFamily: "'Pretendard Variable', 'Pretendard', sans-serif",
-              display: '-webkit-box',
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden',
-            }}
-          >
+          <p className="m-0 text-base font-bold text-ink leading-[1.45] tracking-[-0.01em] line-clamp-3">
             {featuredTitle}
           </p>
         </div>
 
         {/* Right column */}
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="flex-1 flex flex-col overflow-hidden">
           {/* Article list */}
-          <ul
-            style={{
-              margin: 0,
-              padding: 0,
-              listStyle: 'none',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 14,
-              flex: 1,
-            }}
-          >
+          <ul className="m-0 p-0 list-none flex flex-col gap-[14px] flex-1">
             {articles.map((title, i) => (
-              <li
-                key={i}
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: 0,
-                  cursor: 'pointer',
-                }}
-              >
+              <li key={i} className="flex items-start cursor-pointer">
                 <BulletSquare />
-                <span
-                  style={{
-                    fontSize: 14,
-                    fontWeight: 500,
-                    color: 'var(--ink)',
-                    lineHeight: 1.5,
-                    letterSpacing: '-0.01em',
-                    fontFamily: "'Pretendard Variable', 'Pretendard', sans-serif",
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                  }}
-                >
+                <span className="text-sm font-medium text-ink leading-[1.5] tracking-[-0.01em] line-clamp-2">
                   {title}
                 </span>
               </li>
@@ -164,18 +69,7 @@ export default function PressOpen({
           </ul>
 
           {/* Footnote */}
-          <p
-            style={{
-              margin: 0,
-              marginTop: 'auto',
-              paddingTop: 12,
-              fontSize: 12,
-              fontWeight: 500,
-              color: 'var(--mute)',
-              letterSpacing: '-0.01em',
-              fontFamily: "'Pretendard Variable', 'Pretendard', sans-serif",
-            }}
-          >
+          <p className="m-0 mt-auto pt-3 text-xs font-medium text-mute tracking-[-0.01em]">
             {press.name} 언론사에서 직접 편집한 뉴스입니다.
           </p>
         </div>

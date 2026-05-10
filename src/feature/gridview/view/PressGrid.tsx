@@ -14,18 +14,7 @@ export default function PressGrid({ items, subscribedIds, onSubscribe, onUnsubsc
   while (cells.length < 24) cells.push(null)
 
   return (
-    <div
-      style={{
-        width: 930,
-        height: 388,
-        display: 'grid',
-        gridTemplateColumns: 'repeat(6, 1fr)',
-        gridTemplateRows: 'repeat(4, 1fr)',
-        gap: 1,
-        background: '#D2DAE0',
-        border: '1px solid #D2DAE0',
-      }}
-    >
+    <div className="w-[930px] h-[388px] grid grid-cols-6 grid-rows-4 gap-px bg-line border border-line">
       {cells.map((press, i) =>
         press ? (
           <GridCell
@@ -37,7 +26,7 @@ export default function PressGrid({ items, subscribedIds, onSubscribe, onUnsubsc
             onOpen={onOpen}
           />
         ) : (
-          <div key={`empty-${i}`} style={{ background: '#FFFFFF' }} />
+          <div key={`empty-${i}`} className="bg-card" />
         )
       )}
     </div>

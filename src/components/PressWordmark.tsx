@@ -1,10 +1,10 @@
 import type { PressWordmarkConfig } from '../data/presses'
+import { ASSET_URL } from '../data/asset'
 
 function Flag() {
   return (
-    <svg width="8" height="10" viewBox="0 0 8 10" style={{ marginRight: 3, flexShrink: 0 }}>
-      <rect x="0" y="0" width="1.5" height="10" fill="#14212B" />
-      <polygon points="1.5,0 8,3.2 1.5,6.4" fill="#E8252A" />
+    <svg width="8" height="10" className="mr-[3px] shrink-0 text-ink">
+      <use href={ASSET_URL.FLAG_ICON} />
     </svg>
   )
 }
@@ -29,22 +29,11 @@ export default function PressWordmark({
     lineHeight: 1.15,
   }
 
-  const wrapperStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    maxWidth: '88%',
-    textAlign: 'center',
-    wordBreak: 'keep-all',
-    ...baseStyle,
-  }
-
   if (bg) {
     return (
-      <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', maxWidth: '88%' }}>
+      <div className="inline-flex items-center justify-center max-w-[88%]">
         {flag && <Flag />}
-        <span style={{ ...baseStyle, background: bg, padding: '3px 8px', borderRadius: 2 }}>{name}</span>
+        <span style={{ ...baseStyle, background: bg }} className="py-[3px] px-2 rounded-[2px]">{name}</span>
       </div>
     )
   }
@@ -53,7 +42,10 @@ export default function PressWordmark({
   const needsSplit = accentChar !== undefined || (accentUnder?.length ?? 0) > 0
 
   return (
-    <div style={wrapperStyle}>
+    <div
+      className="inline-flex flex-wrap items-center justify-center max-w-[88%] text-center [word-break:keep-all]"
+      style={baseStyle}
+    >
       {flag && <Flag />}
       {needsSplit
         ? chars.map((ch, i) => {
