@@ -1,13 +1,5 @@
 import type { CategoryKey } from '../../../data/presses'
-
-export const CATEGORIES: CategoryKey[] = [
-  '종합/경제',
-  '방송/통신',
-  'IT',
-  '스포츠/연예',
-  '매거진/전문지',
-  '지역',
-]
+import { CATEGORIES } from '../../../data/presses'
 
 interface FieldTabProps {
   activeCategory: CategoryKey
