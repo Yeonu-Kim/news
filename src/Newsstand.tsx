@@ -7,13 +7,9 @@ export const Newsstand = () => {
     <div className="min-h-screen bg-page">
       <div className="w-[931px] mx-auto pt-[58px]">
         <Header />
-
         <div className="mt-10">
           <Ticker />
         </div>
-
-
-
         <ViewContainer />
       </div>
     </div>
