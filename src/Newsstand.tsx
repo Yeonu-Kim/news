@@ -1,22 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
-import { Header } from './feature/title/view/Header'
-import Ticker from './components/Ticker'
+import { Header } from './feature/title/view/header'
+import { Ticker } from './feature/ticker/view/ticker'
 import TabBar from './components/TabBar'
 import PressGrid from './components/PressGrid'
 import PressOpen from './components/PressOpen'
 import FieldTab, { CATEGORIES } from './components/FieldTab'
 import Chevron from './components/Chevron'
-import tickerItems from './data/ticker.json'
 import { presses, PRESSES_PER_PAGE } from './data/presses'
 import type { CategoryKey } from './data/presses'
-import { titlePresenterImpl } from './feature/title/presenter/title-presenter-impl'
 import { PageViewPresenterImpl } from './feature/pageview/presenter/pageview-presenter-impl'
 
 const TICK_MS = 100
 const STEPS = 6000 / TICK_MS // 60 ticks = 6s
 
 export default function Newsstand() {
-  const { formatDate } = titlePresenterImpl();
   const { buildCatMap } = PageViewPresenterImpl();
   // ── Grid view state ──────────────────────────────────────────
   const [tab, setTab] = useState<'all' | 'sub'>('all')
@@ -170,7 +167,7 @@ export default function Newsstand() {
         <Header />
 
         <div style={{ marginTop: 40 }}>
-          <Ticker items={tickerItems} />
+          <Ticker />
         </div>
 
         <div style={{ marginTop: 32 }}>
