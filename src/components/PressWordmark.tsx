@@ -1,18 +1,16 @@
 import type { PressWordmarkConfig } from '../data/presses'
 import { ASSET_URL } from '../data/asset'
 
-function Flag() {
-  return (
-    <svg width="8" height="10" className="mr-[3px] shrink-0 text-ink">
-      <use href={ASSET_URL.FLAG_ICON} />
-    </svg>
-  )
-}
+const Flag = () => (
+  <svg width="8" height="10" className="mr-[3px] shrink-0 text-ink">
+    <use href={ASSET_URL.FLAG_ICON} />
+  </svg>
+)
 
-export default function PressWordmark({
+export const PressWordmark = ({
   name, color, bg, weight, family, italic, tracking,
   accent, accentChar, accentUnder, accentBg, flag, latin, small,
-}: PressWordmarkConfig) {
+}: PressWordmarkConfig) => {
   const fontSize = small ? 14 : 16
   const letterSpacing = tracking ?? (latin ? '0' : '-0.01em')
   const fontFamily = family === 'serif'

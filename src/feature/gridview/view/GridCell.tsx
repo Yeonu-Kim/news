@@ -1,17 +1,15 @@
 import { useState } from 'react'
-import PressWordmark from '../../../components/PressWordmark'
-import SubscribePill from '../../../components/SubscribePill'
+import { PressWordmark } from '../../../components/PressWordmark'
+import { SubscribePill } from '../../../components/SubscribePill'
 import type { Press } from '../../../data/presses'
 
-interface GridCellProps {
+export const GridCell = ({ press, isSubscribed, onSubscribe, onUnsubscribe, onOpen }: {
   press: Press
   isSubscribed: boolean
   onSubscribe: (id: number) => void
   onUnsubscribe: (id: number) => void
   onOpen: (id: number) => void
-}
-
-export default function GridCell({ press, isSubscribed, onSubscribe, onUnsubscribe, onOpen }: GridCellProps) {
+}) => {
   const [active, setActive] = useState(false)
 
   return (

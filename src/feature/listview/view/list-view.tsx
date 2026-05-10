@@ -1,5 +1,5 @@
-import FieldTab from "./FieldTab"
-import PressOpen from "./PressOpen"
+import { FieldTab } from "./FieldTab"
+import { PressOpen } from "./PressOpen"
 import type { CategoryKey, Press } from "../../../data/presses"
 
 export const ListViewContainer = ({ activePress, tabKey, progress, safeIdx, pressesInTab, handleCategoryChange, subscribed, handleSubscribe, handleUnsubscribe }: {

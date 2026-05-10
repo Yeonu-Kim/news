@@ -1,15 +1,13 @@
-import GridCell from './GridCell'
+import { GridCell } from './GridCell'
 import type { Press } from '../../../data/presses'
 
-interface PressGridProps {
+export const PressGrid = ({ items, subscribedIds, onSubscribe, onUnsubscribe, onOpen }: {
   items: (Press | null)[]
   subscribedIds: Set<number>
   onSubscribe: (id: number) => void
   onUnsubscribe: (id: number) => void
   onOpen: (id: number) => void
-}
-
-export default function PressGrid({ items, subscribedIds, onSubscribe, onUnsubscribe, onOpen }: PressGridProps) {
+}) => {
   const cells: (Press | null)[] = [...items]
   while (cells.length < 24) cells.push(null)
 

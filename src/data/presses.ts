@@ -1,6 +1,6 @@
 export type CategoryKey = '종합/경제' | '방송/통신' | 'IT' | '스포츠/연예' | '매거진/전문지' | '지역'
 
-export interface PressWordmarkConfig {
+export type PressWordmarkConfig = {
   name: string
   color: string
   bg?: string
@@ -17,16 +17,16 @@ export interface PressWordmarkConfig {
   small?: boolean
 }
 
-export interface Press {
+export type Press = {
   id: number
   name: string
   wordmark: PressWordmarkConfig
   mainCategory: CategoryKey
 }
 
-function w(name: string, overrides: Partial<PressWordmarkConfig> = {}): PressWordmarkConfig {
-  return { name, color: '#14212B', weight: 700, family: 'sans', ...overrides }
-}
+const w = (name: string, overrides: Partial<PressWordmarkConfig> = {}): PressWordmarkConfig => ({
+  name, color: '#14212B', weight: 700, family: 'sans', ...overrides,
+})
 
 export const presses: Press[] = [
   // Page 1

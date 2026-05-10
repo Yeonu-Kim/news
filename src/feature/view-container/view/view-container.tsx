@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Chevron } from './chevron'
 import { TabBar } from './tab-bar'
-import PressGrid from '../../gridview/view/PressGrid'
+import { PressGrid } from '../../gridview/view/PressGrid'
 import { ListViewContainer } from '../../listview/view/list-view'
 import { presses } from '../../../data/presses'
 import { useTabState } from './use-tab-state'

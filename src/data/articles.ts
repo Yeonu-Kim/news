@@ -1,12 +1,12 @@
 import type { CategoryKey } from './presses'
 
-export interface PressContent {
+export type PressContent = {
   editedAt: string
   featuredTitle: string
   articles: string[]
 }
 
-interface ArticleSet {
+type ArticleSet = {
   featuredTitle: string
   articles: string[]
 }
@@ -193,7 +193,7 @@ const SETS: Record<CategoryKey, ArticleSet[]> = {
   ],
 }
 
-export function getContent(pressId: number, category: CategoryKey): PressContent {
+export const getContent = (pressId: number, category: CategoryKey): PressContent => {
   const sets = SETS[category]
   const set = sets[pressId % sets.length]
   const now = new Date()

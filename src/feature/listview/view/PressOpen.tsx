@@ -1,29 +1,25 @@
 import type { Press, CategoryKey } from '../../../data/presses'
 import { getContent } from '../../../data/articles'
-import PressWordmark from '../../../components/PressWordmark'
-import SubscribePill from '../../../components/SubscribePill'
+import { PressWordmark } from '../../../components/PressWordmark'
+import { SubscribePill } from '../../../components/SubscribePill'
 
-interface PressOpenProps {
-  press: Press
-  activeCategory: CategoryKey
-  isSubscribed: boolean
-  onSubscribe: (id: number) => void
-  onUnsubscribe: (id: number) => void
-}
+const BulletSquare = () => (
+  <span className="inline-block w-[3px] h-[3px] bg-ink shrink-0 mr-2 -translate-y-px self-center" />
+)
 
-function BulletSquare() {
-  return (
-    <span className="inline-block w-[3px] h-[3px] bg-ink shrink-0 mr-2 -translate-y-px self-center" />
-  )
-}
-
-export default function PressOpen({
+export const PressOpen = ({
   press,
   activeCategory,
   isSubscribed,
   onSubscribe,
   onUnsubscribe,
-}: PressOpenProps) {
+}: {
+  press: Press
+  activeCategory: CategoryKey
+  isSubscribed: boolean
+  onSubscribe: (id: number) => void
+  onUnsubscribe: (id: number) => void
+}) => {
   const { editedAt, featuredTitle, articles } = getContent(press.id, activeCategory)
 
   return (
