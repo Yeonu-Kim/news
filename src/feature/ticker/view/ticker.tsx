@@ -34,7 +34,7 @@ export const Ticker = () => {
         }
       `}</style>
       <div
-        className="flex gap-[8px] px-[24px] bg-[var(--soft)]"
+        className="flex gap-[8px] bg-[var(--soft)]"
         style={{ height: 49 }}
         onMouseEnter={handlePause}
         onMouseLeave={handleResume}

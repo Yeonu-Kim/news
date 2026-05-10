@@ -12,7 +12,7 @@ export const PressGrid = ({ items, subscribedIds, onSubscribe, onUnsubscribe, on
   while (cells.length < 24) cells.push(null)
 
   return (
-    <div className="w-[930px] h-[388px] grid grid-cols-6 grid-rows-4 gap-px bg-line border border-line">
+    <div className="w-[931px] h-[388px] grid grid-cols-6 grid-rows-4 gap-px bg-line border border-line">
       {cells.map((press, i) =>
         press ? (
           <GridCell

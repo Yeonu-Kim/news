@@ -5,7 +5,7 @@ import { ViewContainer } from './feature/view-container/view/view-container'
 export const Newsstand = () => {
   return (
     <div className="min-h-screen bg-page">
-      <div className="w-[930px] mx-auto pt-[58px]">
+      <div className="w-[931px] mx-auto pt-[58px]">
         <Header />
 
         <div className="mt-10">

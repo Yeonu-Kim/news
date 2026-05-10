@@ -23,7 +23,7 @@ export const PressOpen = ({
   const { editedAt, featuredTitle, articles } = getContent(press.id, activeCategory)
 
   return (
-    <div className="w-[930px] flex-1 bg-card border border-line border-t-0 pt-5 px-8 pb-6 flex flex-col overflow-hidden box-border">
+    <div className="w-[931px] flex-1 bg-card border border-line border-t-0 pt-5 px-8 pb-6 flex flex-col overflow-hidden box-border">
       {/* Head row */}
       <div className="flex items-center gap-4">
         <div className="scale-[1.05] origin-left">
