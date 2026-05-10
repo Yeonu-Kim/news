@@ -8,28 +8,16 @@ import FieldTab, { CATEGORIES } from './components/FieldTab'
 import Chevron from './components/Chevron'
 import tickerItems from './data/ticker.json'
 import { presses, PRESSES_PER_PAGE } from './data/presses'
-import type { CategoryKey, Press } from './data/presses'
+import type { CategoryKey } from './data/presses'
+import { titlePresenterImpl } from './feature/title/title-presenter-impl'
+import { PageViewPresenterImpl } from './feature/pageview/pageview-presenter-impl'
 
 const TICK_MS = 100
 const STEPS = 6000 / TICK_MS // 60 ticks = 6s
 
-function formatDate(date: Date): string {
-  const days = ['일', '월', '화', '수', '목', '금', '토']
-  const y = date.getFullYear()
-  const m = String(date.getMonth() + 1).padStart(2, '0')
-  const d = String(date.getDate()).padStart(2, '0')
-  return `${y}. ${m}. ${d}. ${days[date.getDay()]}요일`
-}
-
-function buildCatMap(source: Press[]): Record<CategoryKey, Press[]> {
-  const map: Record<CategoryKey, Press[]> = {
-    '종합/경제': [], '방송/통신': [], IT: [], '스포츠/연예': [], '매거진/전문지': [], 지역: [],
-  }
-  for (const p of source) map[p.mainCategory].push(p)
-  return map
-}
-
 export default function Newsstand() {
+  const { formatDate } = titlePresenterImpl();
+  const { buildCatMap } = PageViewPresenterImpl();
   // ── Grid view state ──────────────────────────────────────────
   const [tab, setTab] = useState<'all' | 'sub'>('all')
   const [page, setPage] = useState(0)
