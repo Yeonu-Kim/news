@@ -1,4 +1,4 @@
-import type { TitlePresenter } from "../../domain/title-presenter";
+import type { TitlePresenter } from "../../../domain/title-presenter";
 
 export const titlePresenterImpl = (): TitlePresenter => ({
     formatDate: (date) => {

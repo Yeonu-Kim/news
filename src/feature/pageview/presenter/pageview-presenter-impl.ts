@@ -1,6 +1,6 @@
-import type { Press } from "../../data/presses"
-import type { CategoryKey } from "../../data/presses"
-import type { PageViewPresenter } from "../../domain/pageview-presenter"
+import type { Press } from "../../../data/presses"
+import type { CategoryKey } from "../../../data/presses"
+import type { PageViewPresenter } from "../../../domain/pageview-presenter"
 
 export const PageViewPresenterImpl = (): PageViewPresenter => ({
     buildCatMap: (source: Press[]) => {

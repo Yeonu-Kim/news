@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import Header from './components/Header'
+import { Header } from './feature/title/view/Header'
 import Ticker from './components/Ticker'
 import TabBar from './components/TabBar'
 import PressGrid from './components/PressGrid'
@@ -9,8 +9,8 @@ import Chevron from './components/Chevron'
 import tickerItems from './data/ticker.json'
 import { presses, PRESSES_PER_PAGE } from './data/presses'
 import type { CategoryKey } from './data/presses'
-import { titlePresenterImpl } from './feature/title/title-presenter-impl'
-import { PageViewPresenterImpl } from './feature/pageview/pageview-presenter-impl'
+import { titlePresenterImpl } from './feature/title/presenter/title-presenter-impl'
+import { PageViewPresenterImpl } from './feature/pageview/presenter/pageview-presenter-impl'
 
 const TICK_MS = 100
 const STEPS = 6000 / TICK_MS // 60 ticks = 6s
@@ -167,7 +167,7 @@ export default function Newsstand() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--page)' }}>
       <div style={{ width: 930, margin: '0 auto', paddingTop: 58 }}>
-        <Header date={formatDate(new Date())} />
+        <Header />
 
         <div style={{ marginTop: 40 }}>
           <Ticker items={tickerItems} />
